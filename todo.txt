@@ -1,0 +1,7 @@
+- Icon into the bookmark??          ok
+- Set first time a slide down for the close button
+- Set the close functionality for the iframe
+- Set a sentence and the end the video
+- Set the timer 1 minute
+- set the logic for showing differents videos
+- create anti hacking system. cookies & IP.
