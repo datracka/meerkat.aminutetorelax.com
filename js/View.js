@@ -35,7 +35,7 @@ View.prototype.drawThumbnailsSidebar = function (aThumbs, aVideosThumbs){
     //each thumb has 180px and we add 3 of margin
     var finalH 			= thumbs.find('img').length * 150;
     thumbs.css('height', finalH + 'px');
-    thumbs_wrapper.css('height', ($(window).height() - 5) + 'px');
+    thumbs_wrapper.css('height', ($(window).height() - 42) + 'px');
 
     View.prototype.makeScrollable(thumbs_wrapper,thumbs);
 

@@ -1,7 +1,7 @@
 
 body{
-    background-color: #ffffff;
-    overflow: hidden;
+    background-color: #a7a7a7;
+    overflow: auto;
 }
 .share{
     height: 30px;
@@ -19,6 +19,19 @@ body{
 .header {
     height: 108px;
     background-color: #fff;
+}
+
+.wrapperHeader{
+    margin: 0 auto;
+    width: 1020px;
+    padding-top: 26px;
+    position: relative;
+}
+
+.wrapperHeader img{
+    position: absolute;
+    margin-left: -98px;
+    margin-top: 6px;
 }
 
 .linkToFb{
@@ -180,8 +193,7 @@ body{
 
 .footer{
      width: 100%;
-     position: absolute;
-     bottom: 0px;
+
      height:40px;
      background-color: #a7a7a7;
      text-align: center;
@@ -189,6 +201,12 @@ body{
 }
 
 .site{
+    width: 100%;
+    background-color: white;
+    height: 250px;
+}
+.wrapperSite{
+
     text-align: center;
     font-family: "myriad-pro", sans-serif;
     font-style: normal;
@@ -208,6 +226,8 @@ body{
     line-height: 39px;
     font-size: 23px;
     text-align: left;
+    margin: 0px;
+    padding-top: 20px;
 }
 
 .site p{

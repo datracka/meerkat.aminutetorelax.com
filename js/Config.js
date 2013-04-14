@@ -1,7 +1,7 @@
 
 var Config = function() {
 
-    this.serviceUrl = "http://meerkat.aminutetorelax.local/php/"
+    this.serviceUrl = "http://"+ window.location.hostname +"/php/"
 }
 
 Config.prototype.getServiceUrl = function(){

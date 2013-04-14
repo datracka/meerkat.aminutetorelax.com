@@ -39,7 +39,9 @@
     </div>
 </div>
 <div id="header" class="header">
+    <div id="wrapperHeader" class="wrapperHeader">
       <img src="img/meerkat_traspa.png" id="meerkat" class="meerkat"/>
+    </div>
 </div>
 <div id="content" class="content">
     <div id="wrapperContent" class="wrapperContent">
@@ -71,22 +73,21 @@ border: 1px solid #000; z-index: 100000">
                 watching a inspiring HD fullscreen video in your computer.</p>
             <p class="explanation">Just drag&drop this button to your bookmarks bar to start it.</p>
             <div id="buttonContent" class="buttonContent">
-                <a id="button" class="button" href='javascript:(function(){function f(i){if(i.origin!==e+""+n&&i.origin!==t+""+n){return}if(i.data==="destroy_bookmarklet"){var s=document.getElementById(r);if(s){document.body.removeChild(s);s=null}}}var e="http://",t="https://",n="relax.local",r="videoPlayer_iframe",i=document.getElementById(r);if(i){return}var s=e+""+n+"/embed.html?a="+window.location.hostname+"&p="+document.location.protocol,o=document.createElement("iframe");o.id=r;o.src=s;o.style.position="fixed";o.style.top="0";o.style.left="0";o.style.height="100%25";o.style.width="100%25";o.style.zIndex="16777270";o.style.border="none";o.style.visibility="hidden";o.onload=function(){this.style.visibility="visible"};document.body.appendChild(o);var u=window.addEventListener?"addEventListener":"attachEvent";var a=u=="attachEvent"?"onmessage":"message";window[u](a,f,false)})()'>Reset your mind</a>
+                <a id="button" class="button" href='javascript:(function(){function f(i){if(i.origin!==e+""+n&&i.origin!==t+""+n){return}if(i.data==="destroy_bookmarklet"){var s=document.getElementById(r);if(s){document.body.removeChild(s);s=null}}}var e="http://",t="https://",n="meerkat.aminutetorelax.local",r="videoPlayer_iframe",i=document.getElementById(r);if(i){return}var s=e+""+n+"/embed.html?a="+window.location.hostname+"&p="+document.location.protocol,o=document.createElement("iframe");o.id=r;o.src=s;o.style.position="fixed";o.style.top="0";o.style.left="0";o.style.height="100%25";o.style.width="100%25";o.style.zIndex="16777270";o.style.border="none";o.style.visibility="hidden";o.onload=function(){this.style.visibility="visible"};document.body.appendChild(o);var u=window.addEventListener?"addEventListener":"attachEvent";var a=u=="attachEvent"?"onmessage":"message";window[u](a,f,false)})()'>Reset your mind</a>
             </div>
         </div>
     </div>
 </div>
 <div id="site" class="site">
-    <h2>Watch a very inspiring video which allows you to have a blackout when you need it.</h2>
-    <p>Sometimes when you are in your office at your desk and you feel stressed and anxious would not you like to
-        reset your mind?
-    Or maybe after a busy day at work you are in the underground and you would like to relax your mind before getting home?
-    This free application allows you having a minute of peace watching a random HD fullscreen video for
-        just a minute in your computer.
-    </p>
-
-
-
+    <div id="wrapperSite" class="wrapperSite">
+        <h2>Watch a very inspiring video which allows you to have a blackout when you need it.</h2>
+        <p>Sometimes when you are in your office at your desk and you feel stressed and anxious would not you like to
+            reset your mind?
+        Or maybe after a busy day at work you are in the underground and you would like to relax your mind before getting home?
+        This free application allows you having a minute of peace watching a random HD fullscreen video for
+            just a minute in your computer.
+        </p>
+    </div>
 </div>
 <div id="footer" class="footer">
     <p>The Meerkat bookmark app is a free and personal project from <b>@aminutetorelax.com</b> - Please feel free to feedback: <a id="email" class="email" href="mailto:dequevalavida@googlemail.com" title="dequevalavida@googlemail.com">dequevalavida@googlemail.com</a></p>
@@ -109,7 +110,7 @@ border: 1px solid #000; z-index: 100000">
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-39556499-1', 'aminutetorelax.com');
+    ga('create', 'UA-39556499-2', 'aminutetorelax.com');
     ga('send', 'pageview');
 
 </script>
