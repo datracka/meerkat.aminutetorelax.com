@@ -22,7 +22,7 @@
         <!-- vimeo url container-->
         <script type="text/javascript" src=""></script>
     </head>
-    <body onload="Main();" style=" background-color: blue;">
+    <body onload="Main();">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -32,8 +32,12 @@
             <div id="closeHeader" class="closeHeader">Hover and press to stop relaxing</div>
             <div id="hidedHeader" class="hidedHeader"></div>
 
+        <div id="wrapperLoading" class="wrapperLoading">
+            <div id="loadingBackground" class="loadingBackground">
+                Just loading video... <img id="loading" class="loading" src="img/ajax-loader.gif"/>
+            </div>
+        </div>
             <div id="embed" class="wrapper">
-                <div id="loading" class="loading"></div>
             </div>
             <div class="st_thumbs_wrapper" id="st_thumbs_wrapper">
                 <div class="st_thumbs" id="st_thumbs">

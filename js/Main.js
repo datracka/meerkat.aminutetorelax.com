@@ -22,7 +22,7 @@ var Main = (function(){
         Main.video.prepareVideoUrl(Main.videos);
 
         //TODO: positioning stuff. Move to appropiate place
-        $("div.loading:nth-child(1)").center();
+        //$("div.loading:nth-child(1)").center();
         $(".st_thumbs_wrapper").css('left', ($(window).width() - 201) + 'px');
 
 

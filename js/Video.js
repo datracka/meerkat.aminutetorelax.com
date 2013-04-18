@@ -47,6 +47,7 @@ Video.prototype.getThumbnails = function(videos){
 
     //iterate all the videos json and fill arrays
     var aVideos = JSON.parse(videos);
+    aVideos = Video.prototype.shuffleArray(aVideos); //schuffle videos
     aVideos  = aVideos.reverse();
     var sliceVideos = aVideos.slice(0,20);
 
@@ -56,6 +57,19 @@ Video.prototype.getThumbnails = function(videos){
         Video.prototype.getThumbnailByVideoId(e.id);
     })
 
+}
+
+/**
+ *
+ * Shuffle elements of an array
+ *
+ * @param o
+ * @return array schuffled
+ */
+
+Video.prototype.shuffleArray = function(o){
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
 }
 
 /**
@@ -141,8 +155,10 @@ Video.prototype.getVideo =  function (oVideo) {
  * @param video
  */
 Video.prototype.embedVideo = function (video){
-    $('#loading').remove();
-    $('#embed').empty().append(decodeURI(video.html));
+
+    $('#loadingBackground').fadeOut(1000,function(){
+        $('#embed').empty().append(decodeURI(video.html));
+    });
 }
 
 
