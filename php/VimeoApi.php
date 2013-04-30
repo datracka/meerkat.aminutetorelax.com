@@ -17,6 +17,7 @@ class VimeoApi extends phpVimeo{
 
     protected $userId = "user17237997";
     protected $channelId = "497601";
+    protected $per_page = "20";
 
     /**
      * Construct with key and tokens given
@@ -34,7 +35,22 @@ class VimeoApi extends phpVimeo{
         $videos = $this->call('vimeo.channels.getVideos',
             array(
                 'channel_id' => $this->channelId,
-                'user_id' => $this->userId)
+                'user_id' => $this->userId,
+                'page' => "2" //TODO HARDCORDED!! Calculate current page with getChannelInfo
+            )
+        );
+
+        return $videos;
+
+    }
+
+    public function getChannelInfo()
+    {
+
+        $videos = $this->call('vimeo.channels.getInfo',
+            array(
+                'channel_id' => $this->channelId
+            )
         );
 
         return $videos;

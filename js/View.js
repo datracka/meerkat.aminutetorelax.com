@@ -9,13 +9,44 @@ var View = function () {
 
 }
 
+View.prototype.drawThumbnailsSidebar = function (videos){
+
+    $.each(videos, function(i,e){
+
+        var img = document.createElement("img");
+
+        var div = document.createElement("div");
+        div.setAttribute("id","divThumbs-" + i);
+        div.setAttribute("class","divThumbs");
+
+        //TODO better way to attach event centralizing into Main.
+        div.setAttribute("onclick","View.prototype.showVideo('"+ e.id +"')");
+
+        $("#st_thumbs").append(div);
+
+        //load image
+        Video.prototype.getThumbnailByVideoId(e.id, div);
+
+    })
+
+    var elem 			= $('body');
+    var thumbs_wrapper = elem.find('.st_thumbs_wrapper');
+    var thumbs 		= elem.find('.st_thumbs');
+    //each thumb has 180px and we add 3 of margin
+    var finalH 			= thumbs.find('div').length * 150;
+    thumbs.css('height', finalH + 'px');
+    thumbs_wrapper.css('height', ($(window).height() - 42) + 'px');
+
+    View.prototype.makeScrollable(thumbs_wrapper,thumbs);
+
+}
 /**
  *
  * draw right thumbnails sidebar.
  * @param aThumbs
  * @param aVideosThumbs
  */
-View.prototype.drawThumbnailsSidebar = function (aThumbs, aVideosThumbs){
+View.prototype.drawThumbnailsSidebarDeprecated = function (aThumbs, aVideosThumbs){
 
     $(aThumbs).each(function(i,e){
 
@@ -37,7 +68,7 @@ View.prototype.drawThumbnailsSidebar = function (aThumbs, aVideosThumbs){
     thumbs.css('height', finalH + 'px');
     thumbs_wrapper.css('height', ($(window).height() - 42) + 'px');
 
-    View.prototype.makeScrollable(thumbs_wrapper,thumbs);
+    //View.prototype.makeScrollable(thumbs_wrapper,thumbs);
 
 }
 
@@ -58,7 +89,7 @@ View.prototype.makeScrollable =  function (outer, $inner){
         overflow: 'hidden'
     });
     //Find last image in container
-    var lastElem = $inner.find('img:last');
+    var lastElem = $inner.find('div:last');
     outer.scrollTop(0);
     //When user move mouse over menu
     outer.unbind('mousemove').bind('mousemove',function(e){
@@ -82,5 +113,17 @@ View.prototype.showVideo = function (video){
     Video.prototype.getVideo(ov);
 }
 
+/**
+ *
+ * Callback from Video.prototype.getVideo
+ * @param video
+ */
+View.prototype.embedVideo = function (video){
+
+    $('#loadingBackground').fadeOut(1000,function(){
+        $('#embed').empty().append(decodeURI(video.html));
+    });
+
+}
 
 
