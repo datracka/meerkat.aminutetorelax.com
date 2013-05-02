@@ -15,22 +15,27 @@ var Video = function () {
 }
 
 /**
- * gather list of videos of selected channel
- * Channel HC on server side.
  *
- * Callback getVideoUrl
  *
+ * @return {*}
  */
-Video.prototype.loadVideosFromChannel =  function () {
+
+Video.prototype.loadVideosFromChannel = function(){
 
     var oConfig = new Config();
 
-    $.ajax({
+    var request = $.ajax({
         url: oConfig.getServiceUrl() + "getListVideos.php",
         dataType: "script",
-        async: false,
-        success: function (data, textStatus, jqxhr){
-            Main.videos = data;
+        async: true
+    });
+
+    request.success(function(data, textStatus, jqXHR){
+
+        Video.prototype.getThumbnails(data, textStatus, jqXHR);
+
+        if (typeof(Main.urlVars["id"]) == "undefined"){
+            Main.video.getRandomVideo(data);
         }
     });
 
@@ -42,20 +47,31 @@ Video.prototype.loadVideosFromChannel =  function () {
  *
  * @param videos
  * @return {Array}
+ * @param jqXHR
+ * @param textStatus
  */
-Video.prototype.getThumbnails = function(videos){
+Video.prototype.getThumbnails = function(videos, textStatus, jqXHR){
 
-    //iterate all the videos json and fill arrays
     var aVideos = JSON.parse(videos);
-    aVideos = Video.prototype.shuffleArray(aVideos); //schuffle videos
-    aVideos  = aVideos.reverse();
-    var sliceVideos = aVideos.slice(0,20);
+    //aVideos  = aVideos.reverse(); //reverse them to get the last one in position 0.
 
-    $.each(sliceVideos, function(i,e){
-        //TODO better storage!! very dirty. we just rely that the video Id has the same position that the thumb
-        Main.aVideosThumbs.push(e.id);
-        Video.prototype.getThumbnailByVideoId(e.id);
-    })
+    //get the last 3 videos added to the channel
+    var aLastVideos = [];
+    aLastVideos.push(aVideos.pop());
+    aLastVideos.push(aVideos.pop());
+    aLastVideos.push(aVideos.pop());
+    //schuffle the rest of the videos
+    aVideos = Video.prototype.shuffleArray(aVideos);
+
+    aSliceVideos = aVideos;
+    if (aVideos.length >= 20){
+        var aSliceVideos = aVideos.slice(0,17); //get 17
+    }
+
+    var atotalVideos = aLastVideos.concat(aSliceVideos);
+
+    Main.view = new View();
+    Main.view.drawThumbnailsSidebar(atotalVideos);
 
 }
 
@@ -76,18 +92,24 @@ Video.prototype.shuffleArray = function(o){
  *
  * given video Id gather thumbnails
  * @param videoId
+ * @param element
  */
-Video.prototype.getThumbnailByVideoId = function(videoId){
+Video.prototype.getThumbnailByVideoId = function(videoId, element){
 
     var oConfig = new Config();
 
-    $.ajax({
-        url: oConfig.getServiceUrl() + "getThumbsByVideoId.php?id="+videoId,
+    var request = $.ajax({
+        url: oConfig.getServiceUrl() + "getThumbsByVideoId.php?id="+ videoId,
         dataType: "script",
-        async: false,
-        success: function (data, textStatus, jqxhr){
-            Main.aThumbs.push(JSON.parse(data)[1]._content);   //returns pos 1 array with thumb 150x200
-        }
+        async: true
+    });
+
+    request.success(function(data, textStatus, jqXHR){
+
+        $(element).fadeTo('slow', 0.3, function()
+        {
+            $(this).css("background-image","url(" + JSON.parse(data)[1]._content + ")");
+        }).fadeTo('slow', 1);
     });
 }
 
@@ -96,7 +118,7 @@ Video.prototype.getThumbnailByVideoId = function(videoId){
  *
  * @param videos
  */
-Video.prototype.prepareVideoUrl = function (videos) {
+Video.prototype.getRandomVideo = function (videos) {
 
     var v = null;
     var t = null;
@@ -104,11 +126,10 @@ Video.prototype.prepareVideoUrl = function (videos) {
     var ov = null;
     var av = [];  //array videos
 
-
+    v = "22439234";
     $.each(JSON.parse(videos),function(i,e){
         av.push(e.id);
     })
-
 
     //get a random video from the channel.
     var aLength = av.length;
@@ -139,7 +160,7 @@ Video.prototype.prepareVideoUrl = function (videos) {
 Video.prototype.getVideo =  function (oVideo) {
 
     var url = "http://www.vimeo.com/api/oembed.json" + '?url=' + encodeURIComponent("http://www.vimeo.com/" + oVideo.videoUrl) +
-        '&callback=' + "Video.prototype.embedVideo" +
+        '&callback=' + "View.prototype.embedVideo" +
         '&width=' + (window.innerWidth) +
         '&height=' + (window.innerHeight) +
         '&autoplay=1' +
@@ -149,17 +170,7 @@ Video.prototype.getVideo =  function (oVideo) {
 
 };
 
-/**
- *
- * Callback from Video.prototype.getVideo
- * @param video
- */
-Video.prototype.embedVideo = function (video){
 
-    $('#loadingBackground').fadeOut(1000,function(){
-        $('#embed').empty().append(decodeURI(video.html));
-    });
-}
 
 
 

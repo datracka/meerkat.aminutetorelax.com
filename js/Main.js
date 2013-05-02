@@ -9,26 +9,15 @@ var Main = (function(){
         Main.prototype.fetchElements();
         Main.prototype.initializeEventListeners();
 
-        Main.video = new Video();
-        //set Main.videos with videos from Channel
-        Main.video.loadVideosFromChannel();
-
-        //set Main.aThumbs with thumbs available
-        Main.video.getThumbnails(Main.videos);
-        Main.view = new View();
-        Main.view.drawThumbnailsSidebar(Main.aThumbs, Main.aVideosThumbs);
-
-        //load video
-        Main.video.prepareVideoUrl(Main.videos);
+        Main.prototype.init();
 
     }
 
-    //atrributes
+    //attributes
     Main.library = "";
     Main.video = null;
     Main.view = null;
-    Main.urlVars = "";
-
+    Main.urlVars = null;
     //data -> todo: use Storage library
     Main.aVideosThumbs = []
     Main.aThumbs = []  //array thumbs
@@ -36,11 +25,19 @@ var Main = (function(){
 
     Main.prototype = {
 
+        init: function () {
+
+            Main.video = new Video();
+            Main.video.loadVideosFromChannel();
+
+        },
+
         fetchElements: function(){
             var hidedHeader     = $('#hidedHeader')
             var sidebar         = $('#st_thumbs_wrapper')
             var html            = $('html');
             var cWindow         = $(window);
+
 
             Main.library.set('hidedHeader', hidedHeader);
             Main.library.set('sidebar', sidebar);
@@ -62,7 +59,14 @@ var Main = (function(){
             var sidebar = Main.library.get('sidebar');
 
             cWindow.resize(Main.prototype.resizeScreenElements);
+
             sidebar.hover(Main.prototype.showSidebar, Main.prototype.hideSidebar);
+
+            /** show iframe **/
+            $(".wrapper").fadeIn(2000);
+
+            sidebar.hover(Main.prototype.showSidebar, Main.prototype.hideSidebar);
+            //imgPressed.click(Main.prototype.showVideo)
 
             /** show iframe **/
             $(".wrapper").fadeIn(2000);
@@ -80,18 +84,13 @@ var Main = (function(){
 
                             hidedHeader.hover(Main.prototype.showCloseHeader, Main.prototype.hideCloseHeader);
                             //hidedHeader.mouseout(Main.prototype.hideCloseHeader);
-                            hidedHeader.click(Main.prototype.closewindow)
+                            hidedHeader.click(Main.prototype.closeWindow)
 
                         }
                     );
                 }
             );
         },
-
-        /**
-         * methods realted to events
-         *
-         */
 
         resizeScreenElements: function(){
 
@@ -101,10 +100,6 @@ var Main = (function(){
 
             $('.wrapper iframe').css('height', $(window).height() + 'px');
             $('.wrapper iframe').css('width', $(window).width() + 'px');
-        },
-
-        showVideo: function(){
-            alert("show video");
         },
 
         showSidebar: function () {
@@ -126,7 +121,7 @@ var Main = (function(){
             $("#closeHeader").stop().animate({"top": "-65px"}, "fast");
         },
 
-        closewindow: function(){
+        closeWindow: function(){
 
             var d = Main.urlVars["a"];
             var p = Main.urlVars["p"];
@@ -135,10 +130,6 @@ var Main = (function(){
             var win = parent;
             win.postMessage("destroy_bookmarklet",url);
 
-        },
-
-        onDocument: function (event){
-             alert("aa");
         },
 
         getUrlVars: function(){
