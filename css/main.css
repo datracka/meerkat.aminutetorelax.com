@@ -95,15 +95,46 @@ textarea {
    ========================================================================== */
 
 .wrapper{
-     background-color: #000 ;
-     position: absolute;
-     top:0px;
-     left:0px;
-     width: 100%;
-     height: 100%;
-     overflow: hidden;
-     display: none;
- }
+    background-color: #000 ;
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+}
+
+.closeHeader{
+    z-index: 99;
+    background-color: #b3d4fc;
+    color: #000;
+    opacity: 0.75;
+    height: 70px;
+    font-family: verdana;
+    font-size: 36pt;
+    text-align: center;
+    line-height: 60px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    margin-top: -70px;
+    border-radius: 5px;
+    width: 60%;
+}
+
+.hidedHeader{
+    z-index: 101;
+    opacity: 0;
+    width: 60%;
+    height: 70px;
+    position: relative;
+    cursor:pointer;
+    background-color: #fff;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+}
 
 .wrapperLoading{
 
@@ -123,80 +154,31 @@ textarea {
 
 }
 
-.closeHeader{
-    z-index: 99;
-    background-color: #b3d4fc;
-    color: #343434;
-    opacity: 0.75;
-    height: 70px;
-    font-family: verdana;
-    font-size: 12pt;
-    text-align: center;
-    line-height: 60px;
-    margin: 0 auto;
-    position: relative;
-    cursor: pointer;
-    margin-top: -70px;
-    border-radius: 5px;
-    width: 60%;
-    text-decoration: none;
-
-}
-
-.closeHeader a{
-    text-decoration: none;
-    color: #343434;;
-
-}
-
-.hidedHeader{
-    z-index: 101;
-    opacity: 0;
-    width: 60%;
-    height: 70px;
-    position: relative;
-    cursor:pointer;
-    background-color: #fff;
-    text-align: center;
-    margin: 0 auto;
-    position: relative;
-    text-decoration: none;
-}
-
 .loadingBackground{
 
-   z-index: 99;
+    z-index: 99;
 
-   font-family: verdana;
-   font-size: 16pt;
-   text-align: center;
-   color: #fefefe;
-   font-size: 14pt;
-   text-shadow:2px 2px 1px #333333;
+    font-family: verdana;
+    font-size: 16pt;
+    text-align: center;
+    color: #fefefe;
+    font-size: 16pt;
+    text-shadow:2px 2px 1px #333333;
 
     font-family: Verdana, Geneva, Arial, sans-serif;
 
     background-color: transparent;
-    margin-left: -425px;
+    margin-left: -225px;
     position: absolute;
     top: -35px;
     left: 50%;
-    width: 850px;
+    width: 450px;
     height: 70px;
 
     visibility: visible;
     line-height: 70px;
     cursor: pointer;
 }
-
-.loadingBackground a{
-    color: #fefefe;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-
-
 
 /* side bar */
 
@@ -208,7 +190,6 @@ textarea {
     position: absolute;
     opacity: 0;
     top: 1px;
-    right: 0px;
 }
 
 .st_thumbs {
@@ -217,11 +198,11 @@ textarea {
     overflow: hidden;
 }
 
-.st_thumbs div:hover{
+.st_thumbs img:hover{
     opacity: 1;
 }
 
-.st_thumbs div {
+.st_thumbs img {
     float:left;
     /*margin: 3px 3px 0px 0px;*/
     cursor: pointer;
@@ -230,10 +211,6 @@ textarea {
     box-shadow: 1px 1px 5px #000;
     opacity: 0.5;
     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
-    width: 200px;
-    height: 150px;
-    background: url(/img/ajax-loader.gif) no-repeat center center;
-
 }
 
 /* end sidebar */
@@ -247,14 +224,6 @@ textarea {
 
 @media all and (max-width: 1024px) {
     /* styles for narrow desktop browsers and iPad landscape */
-
-    .closeHeader{
-
-        font-size: 10pt;
-        line-height: 60px;
-        border-radius: 5px;
-        width: 60%;
-    }
 }
 
 @media all and (max-width: 768px) {
