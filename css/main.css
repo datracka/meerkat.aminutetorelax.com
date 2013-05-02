@@ -217,7 +217,11 @@ textarea {
     overflow: hidden;
 }
 
-.st_thumbs div:hover{
+.st_thumbs img{
+    opacity: 0.5;
+}
+
+.st_thumbs img:hover{
     opacity: 1;
 }
 

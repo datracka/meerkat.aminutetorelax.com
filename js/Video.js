@@ -105,11 +105,7 @@ Video.prototype.getThumbnailByVideoId = function(videoId, element){
     });
 
     request.success(function(data, textStatus, jqXHR){
-
-        $(element).fadeTo('slow', 0.3, function()
-        {
-            $(this).css("background-image","url(" + JSON.parse(data)[1]._content + ")");
-        }).fadeTo('slow', 1);
+        View.prototype.drawImageThumbnail(element,data);
     });
 }
 

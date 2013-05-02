@@ -13,8 +13,6 @@ View.prototype.drawThumbnailsSidebar = function (videos){
 
     $.each(videos, function(i,e){
 
-        var img = document.createElement("img");
-
         var div = document.createElement("div");
         div.setAttribute("id","divThumbs-" + i);
         div.setAttribute("class","divThumbs");
@@ -38,6 +36,29 @@ View.prototype.drawThumbnailsSidebar = function (videos){
     thumbs_wrapper.css('height', ($(window).height() - 42) + 'px');
 
     View.prototype.makeScrollable(thumbs_wrapper,thumbs);
+
+}
+
+/**
+ *
+ * Draw image thumbnail
+ *
+ * @param el
+ * @param data
+ */
+View.prototype.drawImageThumbnail = function(el, data){
+
+    $(el).fadeTo('slow', 0.3, function()
+    {
+        $(el).css("background-image","none");
+
+        var img = document.createElement("img");
+        img.setAttribute("id","imgThumbs-" + el.id);
+        img.setAttribute("class","imgThumbs");
+        img.setAttribute("src",JSON.parse(data)[1]._content);
+        $(el).append(img);
+
+    }).fadeTo('slow', 1);
 
 }
 /**
