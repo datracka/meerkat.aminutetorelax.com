@@ -53,9 +53,10 @@ Video.prototype.loadVideosFromChannel = function(){
 Video.prototype.getThumbnails = function(videos, textStatus, jqXHR){
 
     var aVideos = JSON.parse(videos);
-    //aVideos  = aVideos.reverse(); //reverse them to get the last one in position 0.
 
     //get the last 3 videos added to the channel
+    var aVideos  = aVideos.reverse(); //reverse them to get the last one in position 0.
+
     var aLastVideos = [];
     aLastVideos.push(aVideos.pop());
     aLastVideos.push(aVideos.pop());
@@ -64,9 +65,9 @@ Video.prototype.getThumbnails = function(videos, textStatus, jqXHR){
     aVideos = Video.prototype.shuffleArray(aVideos);
 
     aSliceVideos = aVideos;
-    if (aVideos.length >= 20){
-        var aSliceVideos = aVideos.slice(0,17); //get 17
-    }
+//    if (aVideos.length >= 20){
+//        var aSliceVideos = aVideos.slice(0,17); //get 17
+//    }
 
     var atotalVideos = aLastVideos.concat(aSliceVideos);
 
@@ -165,6 +166,21 @@ Video.prototype.getVideo =  function (oVideo) {
     $.getScript(url);
 
 };
+
+Video.prototype.getInfoVideo = function (videoId){
+
+    var oConfig = new Config();
+
+    var request = $.ajax({
+        url: oConfig.getServiceUrl() + "getInfoByVideoId.php?id="+ videoId,
+        dataType: "script",
+        async: true
+    });
+
+    request.success(function(data, textStatus, jqXHR){
+        View.prototype.drawCustomHeaders(data);
+    });
+}
 
 
 

@@ -142,8 +142,24 @@ View.prototype.showVideo = function (video){
 View.prototype.embedVideo = function (video){
 
     $('#loadingBackground').fadeOut(1000,function(){
-        $('#embed').empty().append(decodeURI(video.html));
+        $('#embed').fadeOut(500).empty().append(decodeURI(video.html)).fadeIn(500);
     });
+
+}
+
+/**
+ * Draw custom headers into DOM for FB
+ *
+ * @param data
+ */
+View.prototype.drawCustomHeaders = function(data){
+
+    var oData = JSON.parse(data)[0]
+
+    $("#head").append('<meta property="og:title" content="A minute to relax: '+ oData.title + '" />');
+    $("#head").append('<meta property="og:type" content="video.movie" />');
+    $("#head").append('<meta property="og:url" content="http://aminutetorelax.com/?id=' + oData.id +'" />');
+    $("#head").append('<meta property="og:image" content="' + oData.thumbnails.thumbnail[2]._content + '" />');
 
 }
 

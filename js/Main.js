@@ -28,6 +28,7 @@ var Main = (function(){
         init: function () {
 
             Main.video = new Video();
+
             Main.video.loadVideosFromChannel();
 
         },

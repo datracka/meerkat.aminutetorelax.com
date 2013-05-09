@@ -29,6 +29,12 @@ class VimeoApi extends phpVimeo{
         parent::enableCache(phpVimeo::CACHE_FILE, './cache', 3000);
     }
 
+    /**
+     * Returns a list of videos of the channel hardcoded into the attributes.
+     *
+     * @return array
+     *
+     */
     public function getListOfVideos()
     {
 
@@ -36,7 +42,6 @@ class VimeoApi extends phpVimeo{
             array(
                 'channel_id' => $this->channelId,
                 'user_id' => $this->userId,
-                'page' => "2" //TODO HARDCORDED!! Calculate current page with getChannelInfo
             )
         );
 
@@ -44,6 +49,12 @@ class VimeoApi extends phpVimeo{
 
     }
 
+    /**
+     * Returns info of the channel specified
+     *
+     * @return array
+     *
+     */
     public function getChannelInfo()
     {
 
@@ -57,6 +68,13 @@ class VimeoApi extends phpVimeo{
 
     }
 
+    /**
+     * Returns Thumbnails by videoId
+     *
+     * @param $videoId
+     * @return array
+     *
+     */
     public function getThumbsByVideoId($videoId)
     {
 
@@ -67,5 +85,22 @@ class VimeoApi extends phpVimeo{
         );
 
         return $thumbs;
+    }
+
+    /**
+     * returns info of the video by Video Id
+     *
+     * @param $videoId
+     * @return array
+     */
+    public function getInfoByVideoId($videoId){
+
+        $info = $this->call('vimeo.videos.getInfo',
+            array(
+                'video_id' => $videoId)
+       );
+
+        return $info;
+
     }
 }
