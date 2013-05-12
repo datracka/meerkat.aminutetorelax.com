@@ -2,6 +2,7 @@
 body{
     background-color: #a7a7a7;
     overflow: auto;
+    text-align: center;
 }
 .share{
     height: 30px;
@@ -19,6 +20,7 @@ body{
 .header {
     height: 108px;
     background-color: #fff;
+    text-align: left;
 }
 
 .wrapperHeader{
@@ -89,6 +91,7 @@ body{
     width: 370px;
     margin-left: 40px;
     float:left;
+    text-align: left;
 }
 .text p{
 
